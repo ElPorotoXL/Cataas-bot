@@ -11,6 +11,19 @@ import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import cron from "node-cron";
 import { getCat } from "./commands/cat.js";
+import express from "express";
+
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("bot is running");
+});
+
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, () => {
+  console.log(`Server started on port ${PORT}`);
+});
 
 const client = new Client({
   intents: [
